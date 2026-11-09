@@ -267,7 +267,8 @@ function Building3D({ bid, rank, x, maxMontant, clicks, minToSurpass, onBid, hov
       <text x={x + fw / 2} y={archTop + crownH * 0.56}
         textAnchor="middle" dominantBaseline="middle"
         fontFamily="'Outfit', sans-serif" fontWeight="900"
-        fontSize={isFirst ? 8 : rank < 3 ? 6.5 : 5.5} fill={col}
+        fontSize={isFirst ? 8 : rank < 3 ? 6.5 : 5.5} fill="white"
+        stroke="rgba(0,0,0,0.5)" strokeWidth="0.4" paintOrder="stroke"
         style={{ filter: `drop-shadow(0 0 4px ${col})` }}>
         ★ {bid.nom} ★
       </text>
@@ -359,7 +360,8 @@ function Building3D({ bid, rank, x, maxMontant, clicks, minToSurpass, onBid, hov
       <text x={x + fw / 2} y={mqY + mqH / 2}
         textAnchor="middle" dominantBaseline="middle"
         fontFamily="'Outfit', sans-serif" fontWeight="700"
-        fontSize="4.5" fill="rgba(0,0,0,0.85)">
+        fontSize="4.5" fill="white"
+        stroke="rgba(0,0,0,0.6)" strokeWidth="0.5" paintOrder="stroke">
         {bid.nom.toUpperCase()}
       </text>
 
