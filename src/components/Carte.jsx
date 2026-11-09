@@ -159,7 +159,10 @@ export default function Carte({ onSelectParis }) {
                           fontWeight={isHovered || bid ? "700" : "500"}
                           fontSize={isParis ? 4 : 5.5}
                           fill={labelColor}
-                          style={{ pointerEvents: "none", userSelect: "none", filter: bid ? `drop-shadow(0 0 3px ${bid.couleur}88)` : "none" }}
+                          stroke={bid ? "rgba(0,0,0,0.7)" : "none"}
+                          strokeWidth={bid ? 0.5 : 0}
+                          paintOrder="stroke"
+                          style={{ pointerEvents: "none", userSelect: "none" }}
                         >
                           {bid ? bid.nom : nom}
                         </text>
