@@ -41,7 +41,7 @@ export function AppProvider({ children }) {
         setDepartementBids(Object.keys(data).length ? data : FALLBACK_DEPT);
         setReady(true);
       },
-      () => { setReady(true); }
+      (err) => { console.error("[Firestore] departements:", err.code, err.message); setReady(true); }
     );
 
     const unsubParis = onSnapshot(
@@ -50,7 +50,7 @@ export function AppProvider({ children }) {
         const data = snap.docs.map(d => ({ ...d.data(), id: d.id }));
         setParisBids(data.length ? data : FALLBACK_PARIS);
       },
-      () => {}
+      (err) => { console.error("[Firestore] parisBids:", err.code, err.message); }
     );
 
     const unsubClicks = onSnapshot(
@@ -60,7 +60,7 @@ export function AppProvider({ children }) {
         snap.forEach(d => { data[d.id] = d.data().count || 0; });
         setClicks(prev => ({ ...FALLBACK_CLICKS, ...data }));
       },
-      () => {}
+      (err) => { console.error("[Firestore] clicks:", err.code, err.message); }
     );
 
     const unsubRecent = onSnapshot(
@@ -69,7 +69,7 @@ export function AppProvider({ children }) {
         const data = snap.docs.map(d => ({ key: d.id, ...d.data() }));
         if (data.length) setRecentBids(data);
       },
-      () => {}
+      (err) => { console.error("[Firestore] recentBids:", err.code, err.message); }
     );
 
     return () => { unsubDept(); unsubParis(); unsubClicks(); unsubRecent(); };
