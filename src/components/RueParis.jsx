@@ -428,7 +428,7 @@ function Building3D({ bid, rank, x, maxMontant, clicks, minToSurpass, onBid, hov
               fill={col} />
             {/* Bande haute tintée */}
             <rect x={lx + 3} y={tty} width={tw - 3} height={25}
-              fill={col} opacity={0.1} rx="0 6 0 0" />
+              fill={col} opacity={0.1} rx="6" />
 
             {/* Badge rang */}
             <rect x={lx + tw - 23} y={tty + 5} width={19} height={15} rx={4}
