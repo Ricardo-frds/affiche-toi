@@ -217,7 +217,7 @@ function Building3D({ bid, rank, x, maxMontant, clicks, minToSurpass, onBid, hov
         x={sbAmtPt[0]} y={sbAmtPt[1]}
         textAnchor="middle" dominantBaseline="middle"
         fontFamily="'Inter', sans-serif" fontWeight="600"
-        fontSize={Math.max(3.5, sbFs * 0.72)} fill={col}
+        fontSize={Math.max(3.5, sbFs * 0.72)} fill={colText === "#000" ? col : "white"}
         transform={`rotate(${sbAngle}, ${sbAmtPt[0]}, ${sbAmtPt[1]})`}
         style={{ filter: `drop-shadow(0 0 3px ${col})` }}
       >
@@ -312,7 +312,7 @@ function Building3D({ bid, rank, x, maxMontant, clicks, minToSurpass, onBid, hov
       <text x={bbX + bbW / 2} y={bbY + bbH * 0.65}
         textAnchor="middle" dominantBaseline="middle"
         fontFamily="'Inter', sans-serif" fontWeight="600"
-        fontSize={Math.max(5, bbFs * 0.68)} fill={col}
+        fontSize={Math.max(5, bbFs * 0.68)} fill={colText === "#000" ? col : "white"}
         style={{ filter: `drop-shadow(0 0 3px ${col})` }}>
         {bid.montant} €
       </text>
