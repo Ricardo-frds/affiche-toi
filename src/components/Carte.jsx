@@ -146,7 +146,7 @@ export default function Carte({ onSelectParis }) {
                       const isHovered = hoveredCode === code;
                       const labelColor = isHovered
                         ? "#ffffff"
-                        : bid ? "#fff" : isParis ? "#fcd34d" : "rgba(255,255,255,0.65)";
+                        : bid ? bid.couleur : isParis ? "#fcd34d" : "rgba(255,255,255,0.65)";
 
                       return (
                         <text
@@ -159,9 +159,9 @@ export default function Carte({ onSelectParis }) {
                           fontWeight={isHovered || bid ? "700" : "500"}
                           fontSize={isParis ? 4 : 5.5}
                           fill={labelColor}
-                          style={{ pointerEvents: "none", userSelect: "none" }}
+                          style={{ pointerEvents: "none", userSelect: "none", filter: bid ? `drop-shadow(0 0 3px ${bid.couleur}88)` : "none" }}
                         >
-                          {nom}
+                          {bid ? bid.nom : nom}
                         </text>
                       );
                     })}
