@@ -146,7 +146,7 @@ export default function Carte({ onSelectParis }) {
                       const isHovered = hoveredCode === code;
                       const labelColor = isHovered
                         ? "#ffffff"
-                        : bid ? bid.couleur : isParis ? "#fcd34d" : "rgba(255,255,255,0.65)";
+                        : bid ? "#ffffff" : isParis ? "#fcd34d" : "rgba(255,255,255,0.65)";
 
                       return (
                         <text
