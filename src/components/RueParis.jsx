@@ -63,6 +63,14 @@ function genWins(x, fw, zoneTop, zoneH, seed) {
   return wins;
 }
 
+// Retourne '#000' ou '#fff' selon la luminosité perçue d'une couleur hex
+function contrastText(hex) {
+  const r = parseInt(hex.slice(1, 3), 16) || 0;
+  const g = parseInt(hex.slice(3, 5), 16) || 0;
+  const b = parseInt(hex.slice(5, 7), 16) || 0;
+  return (0.299 * r + 0.587 * g + 0.114 * b) / 255 > 0.45 ? "#000000" : "#ffffff";
+}
+
 // ─── Composant immeuble style casino / Vegas ─────────────────
 function Building3D({ bid, rank, x, maxMontant, clicks, minToSurpass, onBid, hovered, onHover, onLeave, recordClick }) {
   const bidClicks = clicks ?? 0;
@@ -74,6 +82,7 @@ function Building3D({ bid, rank, x, maxMontant, clicks, minToSurpass, onBid, hov
   const y          = BASE_Y;
   const isFirst    = rank === 0;
   const col        = bid.couleur;
+  const colText    = contrastText(col); // '#000' ou '#fff' selon la couleur
 
   // ── Couronne (casino crown) ──
   const crownH  = isFirst ? 30 : rank < 3 ? 24 : rank < 6 ? 18 : 13;
@@ -267,9 +276,10 @@ function Building3D({ bid, rank, x, maxMontant, clicks, minToSurpass, onBid, hov
       <text x={x + fw / 2} y={archTop + crownH * 0.56}
         textAnchor="middle" dominantBaseline="middle"
         fontFamily="'Outfit', sans-serif" fontWeight="900"
-        fontSize={isFirst ? 8 : rank < 3 ? 6.5 : 5.5} fill="white"
-        stroke="rgba(0,0,0,0.5)" strokeWidth="0.4" paintOrder="stroke"
-        style={{ filter: `drop-shadow(0 0 4px ${col})` }}>
+        fontSize={isFirst ? 8 : rank < 3 ? 6.5 : 5.5} fill={col}
+        stroke={colText === "#ffffff" ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0)"}
+        strokeWidth="0.3" paintOrder="stroke"
+        style={{ filter: `drop-shadow(0 0 6px ${col}) drop-shadow(0 0 2px #fff)` }}>
         ★ {bid.nom} ★
       </text>
 
@@ -360,8 +370,7 @@ function Building3D({ bid, rank, x, maxMontant, clicks, minToSurpass, onBid, hov
       <text x={x + fw / 2} y={mqY + mqH / 2}
         textAnchor="middle" dominantBaseline="middle"
         fontFamily="'Outfit', sans-serif" fontWeight="700"
-        fontSize="4.5" fill="white"
-        stroke="rgba(0,0,0,0.6)" strokeWidth="0.5" paintOrder="stroke">
+        fontSize="4.5" fill={colText}>
         {bid.nom.toUpperCase()}
       </text>
 
